@@ -1,10 +1,14 @@
 import 'package:cc_uffs/app/utils/default_controller.dart';
+import 'package:cc_uffs/app/widgets/drawer.dart';
+import 'package:cc_uffs/theme/app_cc_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 abstract class DefaultViewState<view extends View, defaultController extends DefaultController> extends ViewState<view, defaultController> {
-  DefaultViewState(DefaultController defaultController) : super(defaultController);
+  DefaultViewState(DefaultController defaultController, {this.mustBeEmpty = false}) : super(defaultController);
+
+  final bool mustBeEmpty;
 
   Widget defaultBuild(BuildContext context);
 
@@ -68,8 +72,25 @@ abstract class DefaultViewState<view extends View, defaultController extends Def
     if (controller.hasError) {
       return errorBuild(context);
     } else if (controller.isLoading) {
-      return loadingBuild(context);
+      return Scaffold(
+        key: globalKey,
+        body: loadingBuild(context)
+      );
     }
-    return defaultBuild(context);
+    if (mustBeEmpty) {
+      return Scaffold(
+        key: globalKey,
+        body: defaultBuild(context)
+      );
+    }
+    return Scaffold(
+      key: globalKey,
+      appBar: AppBar(
+        backgroundColor: AppColors.primaryColor,
+        title: Text(controller.title),
+      ),
+      drawer: AppDrawer<DefaultController<Presenter>>(controller: controller,),
+      body: defaultBuild(context)
+    );
   }
 }

@@ -3,7 +3,6 @@ import 'package:cc_uffs/app/utils/default_observer.dart';
 import 'package:cc_uffs/domain/entities/user.dart';
 import 'package:cc_uffs/domain/exceptions/uffs_exceptions.dart';
 import 'package:cc_uffs/session.dart';
-import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 // Isso não realmente existe na arquitetura, eu utilizo assim pois acredito que torna mais facil se achar
 // E mantem uma organizacao, pois assim centralizamos as respostas,

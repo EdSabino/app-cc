@@ -12,7 +12,7 @@ dependencies:
   http: ^0.12.0+2
   cupertino_icons: ^0.1.2
   font_awesome_flutter: ^8.5.0
-  flutter_clean_architecture: ^1.0.5
+  flutter_clean_architecture: ^1.0.8
   url_launcher: ^5.1.6
   pedantic: ^1.5.0
   navigate: ^1.0.0

@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:navigate/navigate.dart';
 
-abstract class DefaultController extends Controller {
+abstract class DefaultController<T extends Presenter> extends Controller {
+  DefaultController([this.presenter]);
+
+  T presenter;
+
+  String title;
 
   bool hasError = false;
 
@@ -16,6 +21,11 @@ abstract class DefaultController extends Controller {
 
   void navigateTo(String routeName, [ReplaceRoute replaceRoute = ReplaceRoute.none]) {
     Navigate.navigate(getContext(), routeName);
+  }
+
+  void goToDrawer(String destiny) {
+    navigatorPop();
+    navigateTo(destiny, ReplaceRoute.all);
   }
 
   void createDialog({String title, String body, String button}) {

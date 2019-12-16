@@ -6,14 +6,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:navigate/navigate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class LoginController extends DefaultController {
+class LoginController extends DefaultController<LoginPresenter> {
   LoginController() :
-    presenter = LoginPresenter(AuthenticationRepository()),
     usernameFieldController = TextEditingController(),
     passwordFieldController = TextEditingController(),
-    super();
+    super(LoginPresenter(AuthenticationRepository()));
 
-  LoginPresenter presenter;
   TextEditingController passwordFieldController;
   TextEditingController usernameFieldController;
 
@@ -49,6 +47,6 @@ class LoginController extends DefaultController {
   }
 
   void navigateToHome() {
-    navigateTo('home', ReplaceRoute.all);
+    navigateTo('noticies', ReplaceRoute.all);
   }
 }

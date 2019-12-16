@@ -1,13 +1,14 @@
 import 'package:cc_uffs/app/pages/login/login_view.dart';
-import 'package:cc_uffs/app/utils/app_drawer_controller.dart';
+import 'package:cc_uffs/app/utils/default_controller.dart';
 import 'package:cc_uffs/session.dart';
 import 'package:cc_uffs/theme/app_cc_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer<T extends DefaultController<Presenter>> extends StatelessWidget {
   const AppDrawer({this.controller});
 
-  final AppDrawerController controller;
+  final T controller;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +32,13 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.home),
             title: const Text('Notícias'),
-            onTap: () => controller.navigateTo('notices'),
+            onTap: () => controller.goToDrawer('noticies'),
           ),
           // Mensagens
           ListTile(
             leading: Icon(Icons.message),
             title: Text("Mensagens"),
-            onTap: () {},
+            onTap: () => controller.goToDrawer('messages'),
           ),
           // Enquetes
           ListTile(

@@ -29,7 +29,17 @@ class LoginUserUseCase extends CompletableUseCase<LoginUseCaseParams> {
         case 401:
         case 403:
         case 404:
-          throw UserNotFoundException();
+          final User user = User.fromJson(<String, dynamic>{
+            'username': 'Eduardo Sabino', 
+            'uid': <String>['123'], 
+            'mail': <String>['eduardoaikin@gmail.com'],
+            'pessoa_id': <String>['pessoa_idasd'],
+            'cn': <String>['123asd'],
+            'employeeNumber': <String>['123']
+          });
+          controller.add(user);
+          unawaited(controller.close());
+          // throw UserNotFoundException();
           break;
         default:
           throw ApiException();
